@@ -1,0 +1,418 @@
+/*
+ * Feel free to change name of colors if you need it
+ * Feel free to add new colors if you need it
+ */
+ html,
+ body {
+     padding: 0;
+     margin: 0;
+ }
+
+:root {
+  --bg-color--dark: #0b192f;
+  --bg-color--header: #162b4d;
+  --link: #fff;
+  --link--hover: #b8b8b8;
+  --bg-footer-color: #162b4d;;
+}
+
+body {
+  font-family: roboto;
+}
+.post-1 {
+	background: #B71757;
+}
+.post-2 {
+	background: #0D7E71;
+}
+.post-3 {
+	background: #b1660e;
+}
+.post-4 {
+	background: #d12767;
+}
+.post-5 {
+	background: #2d95bb;
+}
+
+/* Your styles go here */
+/* desktop  */
+
+.global-wrapper {
+  font-family: Roboto;
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 13.8% 27% 27% 18.5% 13.7%;
+  background-color: #0b192f;
+}
+
+/* positions */
+
+header {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  background-color: #162b4d;
+  height: 90px;
+  display: grid;
+  grid-template-columns: 20% 40% 40%;
+}
+
+nav {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+
+main {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  margin-top: 3%;
+}
+
+aside {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  margin-top: 8%;
+  margin-left: 7%;
+}
+
+footer {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  height: 100px;
+  background-color: #162b4d;
+  display: grid;
+  grid-template-columns: 87% 13%;
+  color: #fff;
+  font-weight: 100;
+  opacity: .5;
+}
+
+/* header */
+
+.logo-text h1 {
+  font-family: Roboto;
+  font-weight: 100;
+  font-size: 36px;
+  color: #fff;
+  margin-left: 10%;
+  margin-top: 15px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.color-red {
+  color: #d12767;
+}
+
+.burger-menu {
+  display: none;
+}
+
+.nav-menu ol {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 20% 20% 22% 30%;
+  margin: 0;
+  margin-left: 7.5%;
+  padding: 0;
+}
+
+.nav-item {
+  box-sizing: border-box;
+  height: 90px;
+  font-size: 1.2vw;
+  text-align: center;
+  color: #fff;
+  padding-top: 32px;
+  font-weight: 100;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background-color: #283d5f;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-item a:hover {
+  color: #b8b8b8;
+}
+
+/* posts */
+
+.post {
+  display: flex;
+}
+
+.post:nth-child(even) {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.post-description h2:hover {
+  cursor: pointer;
+  opacity: .5;
+}
+
+.post-photo {
+  width: 50%;
+}
+
+.post-photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.post-photo:hover {
+  opacity: .5;
+}
+
+.post-description {
+  width: 40%;
+}
+
+.post-description h2 {
+  font-family: Roboto;
+  font-weight: 100;
+  font-size: 3vw;
+  word-wrap: break-word;
+  line-height: 46px;
+  color: #fff;
+  margin: 28px 35px 0 35px;
+}
+
+.post-description p {
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 24px 30px 20px 35px;
+  opacity: .5;
+}
+
+.post-date {
+  width: 10%;
+  color: #fff;
+  opacity: .3;
+}
+
+.post-date h3 {
+  font-family: Roboto;
+  font-weight: 100;
+  box-sizing: border-box;
+  font-size: 3vw;
+  margin: 1px 20% 0 30%;
+}
+
+.post-date p {
+  font-size: 1.5vw;
+  margin: 0 20% 0 30%;
+}
+
+.post-5 .post-description {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+/* aside */
+
+.news-post {
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.aside-photo img {
+  width: 100%;
+  height: 100%;
+}
+
+.aside-description h4 {
+  font-family: Roboto;
+  font-weight: 300;
+  font-size: 26px;
+  margin: 25px 20px 0 33px;
+  line-height: 1.1;
+}
+
+.aside-description p {
+  margin: 14px 32px;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 100;
+  padding-bottom: 35px;
+}
+
+/* footer */
+
+.copyright p {
+  margin: 25px 25px;
+}
+
+.copyright p:nth-child(2) {
+  margin-top: -20px;
+}
+
+.dev {
+  margin-top: 10px;
+  margin: 0 10px;
+}
+
+/* tablet */
+
+@media (max-width: 768px) {
+  .global-wrapper {
+      grid-template-columns: 60% 40%;
+  }
+  /* header */
+  header {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      height: 180px;
+      grid-template-rows: 35% 65%;
+      margin: 0 2%;
+  }
+  .nav-menu {
+      display: none;
+  }
+  .burger-menu {
+      display: block;
+      box-sizing: border-box;
+      margin-top: 20px;
+  }
+  .burger-menu div {
+      width: 20px;
+      height: 2px;
+      background-color: #fff;
+      margin: 6px 50%;
+  }
+  .logo-text {
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      text-align: center;
+  }
+  nav {
+      grid-row-start: 1;
+      grid-row-end: 2;
+      grid-column-start: 1;
+      grid-column-end: 4;
+  }
+  /* posts */
+  main {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      margin-top: 3%;
+      margin-left: 3.3%;
+  }
+  .post {
+      display: block;
+  }
+  .post:nth-child(even) {
+      text-align: left;
+  }
+  .post-photo {
+      width: 100%;
+  }
+  .post-description {
+      width: 100%;
+  }
+  .post-description h2 {
+      font-size: 6vw;
+  }
+  .post-date {
+      width: 100%;
+      margin-left: 15%;
+      box-sizing: border-box;
+  }
+  .post-date h3 {
+      font-size: 7vw;
+      margin-top: 10%;
+  }
+  .post-date p {
+      font-size: 3.5vw;
+      margin-left: 31%;
+      padding-bottom: 5%;
+  }
+  .post-5 .post-description h2 {
+      box-sizing: border-box;
+      margin-top: 0;
+      padding-top: 10%;
+  }
+  /* aside */
+  aside {
+      grid-column-start: 2;
+      grid-column-end: 3;
+      margin: 4.5% 5% 0 3%;
+  }
+  .news-post {
+      margin-bottom: 1%;
+  }
+  footer {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      margin: 2% 1.8%;
+      display: block;
+      text-align: center;
+      box-sizing: border-box;
+      padding-top: 1.5%;
+  }
+  .dev,
+  .dev p,
+  .copyright p,
+  .copyright p:nth-child(2) {
+      margin: 1px;
+  }
+}
+
+/* mobile */
+
+@media (max-width: 480px) {
+  .global-wrapper {
+      grid-template-columns: 100%;
+  }
+  header {
+      grid-column-start: 1;
+      grid-column-end: 2;
+  }
+  main {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      margin: 3% 2% 0% 2%;
+  }
+  .post-description h2 {
+      font-size: 10vw;
+  }
+  .post-date {
+      margin-left: 0%;
+  }
+  .post-date h3 {
+      font-size: 12vw;
+      margin-top: 5%;
+      text-align: center;
+  }
+  .post-date p {
+      font-size: 5.5vw;
+      text-align: center;
+  }
+  aside {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      margin: 0 2%;
+  }
+  .news-post {
+      margin-bottom: 5%;
+  }
+  footer {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      margin: 2% 2%;
+      height: 150px;
+      padding: 30px 5% 0 5%;
+  }
+}
