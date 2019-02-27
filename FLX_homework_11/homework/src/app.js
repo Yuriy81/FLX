@@ -1,103 +1,104 @@
-let rootNode = document.getElementById("root");
+let itemCounter = 0;
+const MAXIMUM_ITEMS = 10;
 
-// Your code goes here
-let inputField = document.getElementById('inputField');
-let disableButton = document.getElementById('button');
-let itemsList = document.getElementById('itemsList');
-let header = document.getElementById('header');
-let h1 = document.querySelector('h1');
-let maxNumber = 10;
+const maximumMessage = document.querySelector('.maximum-message');
+const inputField = document.querySelector('.todo-add_input');
+const addButton = document.querySelector('.todo-add_button');
+const todoList = document.querySelector('.todo-list');
 
-inputField.addEventListener('keyup', checkInput);
-disableButton.addEventListener('click', createList);
+inputField.oninput = event => {
+    const inputText = inputField.value.trim();
+    addButton.disabled = !inputField;
 
-function checkInput() {
-	if (inputField.value.trim()) {
-		disableButton.removeAttribute('disabled', '');
-	} else {
-		disableButton.setAttribute('disabled', '');
-	}
+    if (event.code === 'Enter' && inputText) {
+        addItem(inputText);
+    }
 }
 
-let count = 0;
-function createList() {
-	count ++;
-	let text = inputField.value;
-	inputField.value = '';
-	disableButton.setAttribute('disabled', '');
-
-	let li = document.createElement('li');
-	li.addEventListener('dragstart', dragStart, false);
-	li.addEventListener('dragover', dragOver, false);
-	li.addEventListener('drop', dropItem, false);
-	let p = document.createElement('p');
-	let pValue = document.createTextNode(text);
-	itemsList.appendChild(li);
-	li.appendChild(p);
-	p.appendChild(pValue);	
-    li.setAttribute('draggable', true);
-
-	let checkButton = document.createElement('button');
-	let checkIcon = document.createElement('i');
-	checkIcon.setAttribute('class','material-icons');
-	checkIcon.innerHTML = 'check_box_outline_blank';
-	checkButton.appendChild(checkIcon);
-	li.prepend(checkButton);
-
-	let checkedIcon = document.createElement('i');
-    checkedIcon.setAttribute('class', 'material-icons');
-    checkedIcon.innerHTML = 'check_box';
-
-	let checked = () => {
-		if (checkButton.contains(checkIcon)) {
-			checkButton.replaceChild(checkedIcon, checkIcon);
-		}
-	}
-	checkButton.addEventListener('click', checked);
-
-	let deleteButton = document.createElement('button');
-	let deleteIcon = document.createElement('i');
-	deleteIcon.setAttribute('class','material-icons');
-	deleteIcon.innerHTML = 'delete';
-	deleteButton.appendChild(deleteIcon);
-	li.appendChild(deleteButton);
-
-	let deleteItem = () => {
-		li.parentNode.removeChild(li);
-		inputField.removeAttribute('disabled', '');
-		if (header.contains(document.querySelector('p'))) {
-            h1.nextSibling.remove();
-        }
-		count--;
-	}
-	deleteButton.addEventListener('click', deleteItem);
-
-	let message = document.createElement('p');
-	message.innerHTML = 'Maximum item per list are created';
-	if (count >= maxNumber ) {		
-		inputField.setAttribute('disabled', '');
-        document.querySelector('#header').insertBefore(message, h1.nextSibling);
-	}
-
+addButton.onclick = function () {
+    addItem(inputField.value.trim());
 }
 
-let dragElement = null;
+const addItem = function (inputText) {
+    const listItem = document.createElement('li');
+    listItem.setAttribute('class', 'todo-list_item');
+    listItem.setAttribute('draggable', true);
 
-function dragStart(event) {
-    dragElement = this;
-	event.dataTransfer.effectAllowed = 'move';
-	event.dataTransfer.setData('text/html', this.innerHTML);
+    const text = document.createElement('span');
+    text.appendChild(document.createTextNode(inputText));
+
+    const checkIcon = document.createElement('i');
+    checkIcon.setAttribute('class', 'material-icons');
+    checkIcon.appendChild(document.createTextNode('check_box_outline_blank'));
+
+    const deleteIcon = document.createElement('i');
+    deleteIcon.setAttribute('class', 'material-icons');
+    deleteIcon.appendChild(document.createTextNode('delete'));
+
+    const checkButton = document.createElement('button');
+    checkButton.setAttribute('class', 'todo-list_checkbox');
+
+    const deleteButton = document.createElement('button');
+    deleteButton.setAttribute('class', 'todo-list_remove_item');
+
+    checkButton.appendChild(checkIcon);
+    checkButton.appendChild(text);
+    deleteButton.appendChild(deleteIcon);
+    listItem.appendChild(checkButton);
+    listItem.appendChild(deleteButton);
+    todoList.appendChild(listItem);
+
+    if (++itemCounter >= MAXIMUM_ITEMS) {
+        inputField.disabled = true;
+        maximumMessage.style.visibility = 'visible';
+    }
+
+    checkButton.onclick = function () {
+        checkIcon.textContent = 'check_box';
+    }
+
+    deleteButton.onclick = function () {
+        listItem.remove();
+        itemCounter--;
+        inputField.disabled = false;
+        maximumMessage.style.visibility = 'hidden';
+    }
+
+    inputField.value = '';
+    addButton.disabled = true;
 }
-function dragOver(event) {
-    if (event.preventDefault) {
-		event.preventDefault();
-	}
-	return false;
-}
-function dropItem(e) {
-	if (dragElement !== this) {
-		dragElement.innerHTML = this.innerHTML;
-		this.innerHTML = event.dataTransfer.getData('text/html');
-	}
-	return false;
-}
+
+let dragging;
+
+todoList.addEventListener('dragstart', event => {
+    dragging = event.target;
+    event.target.style.opacity = 0.5;
+});
+
+todoList.addEventListener('dragend', event => {
+    event.target.style.opacity = '';
+});
+
+todoList.addEventListener('dragover', event => {
+    event.preventDefault();
+});
+
+todoList.addEventListener('dragenter', event => {
+    if (event.target.className === 'todo-list_item') {
+        event.target.style.border = 'dotted';
+    }
+});
+
+todoList.addEventListener('dragleave', event => {
+    if (event.target.className === 'todo-list_item') {
+        event.target.style.border = '';
+    }
+});
+
+todoList.addEventListener('drop', event => {
+    event.preventDefault();
+    if (event.target.className === 'todo-list_item') {
+        event.target.style.border = '';
+        todoList.insertBefore(dragging, event.target);
+    }
+});

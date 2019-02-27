@@ -1,78 +1,108 @@
 /* Your styles goes here */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-	font-family: 'Roboto', sans-serif;
-	margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
-#root {
-	max-width: 600px;
-	margin: 100px auto;
-	border: 1px solid #000;
-	padding: 30px 20px 10px 20px;
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
-p {
-	margin: 0;
+
+.todo-window {
+    border: 1px solid #000;
+    display: flex;
+    flex-direction: column;
+    height: 620px;
+    justify-content: flex-start;
+    width: 600px;
 }
-h1 {
-	margin: 0;
-    font-weight: 100;
+
+.todo-heading {
+    font-size: 170%;
+    font-weight: normal;
+    margin-top: 25px;
+    text-align: center;
 }
-header {
-	text-align: center;
+
+.maximum-message {
+    color: #FF0000;
+    text-align: center;
+    visibility: hidden;
 }
-main {
-	min-height: 300px;
+
+.todo-add {
+    align-items: center;
+    border-bottom: 2px solid #000;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    margin: 15px 40px 10px 10px;
+    padding-bottom: 20px;
 }
-footer img {
-	display: block;
-	max-width: 50px;
-	margin: 0 auto;
+
+.todo-add_input {
+    border: 1px solid #000;
+    display: flex;
+    flex-grow: 1;
+    font-size: 14px;
+    margin: 0 5px 0 15px;
+    padding: 4px 5px;
 }
-.input-wrapper {
-	display: flex;
-	justify-content: space-between;
-	padding: 20px 10px;
-	border-bottom: 2px solid #000;
-}
-.input-wrapper input {
-	width: 90%;
-	outline: none;
-	border: 1px solid #000;
-	padding: 7px 5px;
-}
+
 button {
-	width: 30px;
-	height: 30px;
-	padding: 0;
-	border: none;
-	background: transparent;
-	position: relative;
-	outline: none;
-	cursor: pointer;
+    align-items: center;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    padding: 0;
 }
-button .material-icons {
-	position: absolute;
-	top: -2px;
-	left: -2px;
-    font-size: 34px;
+
+button:disabled {
+    cursor: not-allowed;
 }
-ul {
-	margin: 30px 0;
-	padding: 0 10px;
-	list-style: none;
+
+::placeholder {
+    color: #D3D3D3;
 }
-ul li {
-	display: flex;
+
+.todo-list {
+    list-style-type: none;
+    margin: 10px 40px 10px 20px;
+}
+
+.material-icons {
+    font-size: xx-large;
+}
+
+.todo-list_item {
+    align-items: center;
     cursor: move;
-	padding: 5px;
-	border-radius: 5px;
-    transition: all 0.5s ease-in-out;
+    display: flex;
+    margin-bottom: 5px;
 }
-ul li:hover {
-	background-color: #e5e5e5;
+
+.todo-list_remove_item {
+    margin-left: auto;
 }
-ul p {
-	line-height: 30px;
-    font-size: 16px;
-	width: 100%;
-	padding: 0px 10px;
+
+.todo-footer {
+    align-items: flex-end;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+.todo-img {
+    height: 65px;
+    margin-bottom: 15px;
+    width: 65px;
 }
